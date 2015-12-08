@@ -149,14 +149,13 @@ namespace Mnemosyne
                     {
                         _db.Insert(new
                         {
-                            Log = string.Format("[Lev:{0}] [T:{1}] [User:{2}] [PID:{3}] [TID:{4}] [Process:{5}] Message:{6}",
-                            level,
-                            DateTime.Now.ToString("yyyyMMddHHmmssfff"),
-                            string.Format(@"{0}___{1}\{2}", Environment.MachineName, Environment.UserDomainName, Environment.UserName),
-                            Process.GetCurrentProcess().Id,
-                            Thread.CurrentThread.ManagedThreadId,
-                            Process.GetCurrentProcess().ProcessName,
-                            message)
+                            Level = level,
+                            TimeStamp = DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                            User = string.Format(@"{0}___{1}\{2}", Environment.MachineName, Environment.UserDomainName, Environment.UserName),
+                            PID = Process.GetCurrentProcess().Id,
+                            TID = Thread.CurrentThread.ManagedThreadId,
+                            Process = Process.GetCurrentProcess().ProcessName,
+                            Message = message
                         });
                         break;
                     }
