@@ -27,17 +27,17 @@ namespace Mnemosyne
                 dic = new ConcurrentDictionary<string, Logger>();
             }
 
-            if (GetMongoConn() != null)
+            if (GetConfig("MongoDB", "mongo") != null)
             {
                 try
                 {
-                    var str = MongoServerSettings.FromUrl(new MongoUrl(GetMongoConn()));
+                    var str = MongoServerSettings.FromUrl(new MongoUrl(GetConfig("MongoDB", "mongo")));
                     _db = new MongoServer(str).GetDatabase("NLog").GetCollection("nlog");
                 }
                 catch (Exception e) { Fatal(e.Message); }
             }
 
-            _target = GetTarget();
+            _target = GetConfig("Target", "target");
         }
 
         public static new void Debug(string message, int callHierarchyIdx = 1)
@@ -115,21 +115,22 @@ namespace Mnemosyne
         private static void Write(Logger logger, LogLevel level, string message)
         {
             logger.Log(level, message);
-            if (_target == "ALL" || _target.Contains("MONGO"))
+            if ((_target.Equals("ALL", StringComparison.CurrentCultureIgnoreCase) || _target.Contains("MONGO")) &&
+                level >= LogLevel.FromString(GetConfig("MongoDB", "level")))
                 WriteMongo(level.ToString(), message);
         }
 
-        private static string GetTarget()
+        private static string GetConfig(string section, string key)
         {
             try
             {
                 var configPath = string.Format(@".\{0}.config", typeof(VWLogger).Namespace);
                 var doc = XDocument.Load(configPath);
 
-                foreach (var o in doc.Root.Elements("Target").Elements().Where(o => o.Name.ToString().ToLower().Equals("add")))
+                foreach (var o in doc.Root.Elements(section).Elements().Where(o => o.Name.ToString().ToLower().Equals("add")))
                 {
-                    if (o.Attribute("key").Value.Equals("target"))
-                        return o.Attribute("value").Value.ToUpper();
+                    if (o.Attribute("key").Value.Equals(key, StringComparison.CurrentCultureIgnoreCase))
+                        return o.Attribute("value").Value;
                 }
                 return "";
             }
@@ -161,26 +162,6 @@ namespace Mnemosyne
                     }
                     catch { }
                 }
-            }
-        }
-
-        private static string GetMongoConn()
-        {
-            try
-            {
-                var configPath = string.Format(@".\{0}.config", typeof(VWLogger).Namespace);
-                var doc = XDocument.Load(configPath);
-
-                foreach (var o in doc.Root.Elements("MongoDB").Elements().Where(o => o.Name.ToString().ToLower().Equals("add")))
-                {
-                    if (o.Attribute("key").Value.Equals("mongo"))
-                        return o.Attribute("value").Value;
-                }
-                return "";
-            }
-            catch
-            {
-                return null;
             }
         }
     }
