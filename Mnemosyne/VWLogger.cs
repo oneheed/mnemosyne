@@ -20,13 +20,18 @@ namespace Mnemosyne
         private static ConcurrentDictionary<string, Logger> dic;
         private static MongoCollection _db;
         private static string _target;
+        private static string _configPath = string.Format(@".\{0}.config", typeof(VWLogger).Namespace);
         static VWLogger()
         {
             if (dic == null)
             {
                 dic = new ConcurrentDictionary<string, Logger>();
             }
+            Init();
+        }
 
+        private static void Init()
+        {
             if (GetConfig("MongoDB", "mongo") != null)
             {
                 try
@@ -38,6 +43,12 @@ namespace Mnemosyne
             }
 
             _target = GetConfig("Target", "target");
+        }
+
+        public static void SetupConfigPath(string config)
+        {
+            _configPath = config;
+            Init();
         }
 
         public static new void Debug(string message, int callHierarchyIdx = 1)
@@ -124,8 +135,7 @@ namespace Mnemosyne
         {
             try
             {
-                var configPath = string.Format(@".\{0}.config", typeof(VWLogger).Namespace);
-                var doc = XDocument.Load(configPath);
+                var doc = XDocument.Load(_configPath);
 
                 foreach (var o in doc.Root.Elements(section).Elements().Where(o => o.Name.ToString().ToLower().Equals("add")))
                 {
