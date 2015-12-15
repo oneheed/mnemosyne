@@ -19,7 +19,7 @@ namespace Mnemosyne
     {
         private static ConcurrentDictionary<string, Logger> dic;
         private static MongoCollection _db;
-        private static string _target;
+        private static readonly string _target;
         private static string _configPath = string.Format(@".\{0}.config", typeof(VWLogger).Namespace);
         static VWLogger()
         {
@@ -146,7 +146,7 @@ namespace Mnemosyne
             }
             catch
             {
-                return null;
+                return string.Empty;
             }
         }
 
