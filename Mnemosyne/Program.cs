@@ -10,7 +10,7 @@ namespace Mnemosyne
     {
         static void Main(string[] args)
         {
-            VWLogger.Info("tt");
+            new MnemosyneLogger().Info(new LogMessage("TestMessage"));
         }
     }
 }
