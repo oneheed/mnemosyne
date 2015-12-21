@@ -16,6 +16,7 @@ namespace Mnemosyne
         public string Message { get; set; }
         public string FuncName { get; set; }
         public string Project { get; set; }
+        public string ProcessName { get; set; }
         public string PID { get; set; }
         public string TID { get; set; }
         public string TimeStamp { get; set; }
@@ -28,6 +29,7 @@ namespace Mnemosyne
                 this.PID = GetPID();
                 this.TID = GetTID();
                 this.TimeStamp = GetTimeStamp();
+                this.ProcessName = GetProcessName();
                 this.Project = GetProject();
                 this.User = GetUser();
                 this.FuncName = GetFuncName();
@@ -44,6 +46,7 @@ namespace Mnemosyne
                 this.PID = GetPID();
                 this.TID = GetTID();
                 this.TimeStamp = GetTimeStamp();
+                this.ProcessName = GetProcessName();
                 this.Project = GetProject();
                 this.User = GetUser();
                 this.FuncName = GetFuncName();
@@ -61,6 +64,7 @@ namespace Mnemosyne
                 this.PID = GetPID();
                 this.TID = GetTID();
                 this.TimeStamp = GetTimeStamp();
+                this.ProcessName = GetProcessName();
                 this.Project = GetProject();
                 this.User = GetUser();
                 this.FuncName = GetFuncName();
@@ -99,7 +103,7 @@ namespace Mnemosyne
             return string.Empty;
         }
 
-        private string GetProject()
+        private string GetProcessName()
         {
             try
             {
@@ -124,6 +128,16 @@ namespace Mnemosyne
             try
             {
                 return new StackTrace().GetFrame(2).GetMethod().Name;
+            }
+            catch { }
+            return string.Empty;
+        }
+
+        private string GetProject()
+        {
+            try
+            {
+                return new StackTrace().GetFrame(2).GetMethod().DeclaringType.ToString();
             }
             catch { }
             return string.Empty;

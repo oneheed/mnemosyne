@@ -238,9 +238,10 @@ namespace Mnemosyne
 
         private string GetMessageFromObj(LogMessage messageObj)
         {
-            string msg = string.Format("[PID:{0}][TID:{1}] | [Project:{2}] | [User:{3}] | [Category:{4}][Func:{5}] | Message:{6}| Extra:{7}",
+            string msg = string.Format("[PID:{0}][TID:{1}] | [Project:{2}][Process:{3}] | [User:{4}] | [Category:{5}][Func:{6}] | Message:{7}| Extra:{8}",
                 messageObj.PID, messageObj.TID,
                 messageObj.Project,
+                messageObj.ProcessName,
                 messageObj.User,
                 messageObj.Category,
                 messageObj.FuncName,
