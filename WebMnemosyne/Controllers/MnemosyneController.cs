@@ -18,7 +18,7 @@ namespace WebMnemosyne.Controllers
         public ActionResult Log(LogMessage inputObj)
         {
             if (_logger == null)
-                _logger = new MnemosyneLogger(Path.Combine(Server.MapPath("~"), string.Format(@"{0}.config", "Mnemosyne")));
+                _logger = new MnemosyneLogger(Path.Combine(Server.MapPath("~/bin"), string.Format(@"{0}.config", "Mnemosyne")));
             try
             {
                 if (string.IsNullOrEmpty(inputObj.Message))
