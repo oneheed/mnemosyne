@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mnemosyne", "Mnemosyne\Mnemosyne.csproj", "{9C702CA1-48EA-4840-9D55-D3F846702232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMnemosyne", "WebMnemosyne\WebMnemosyne.csproj", "{3EC9C291-197E-46FE-9B76-8E3981C11CBC}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.10.102.125:8080/tfs/apcollection
+		SccProjectUniqueName0 = Mnemosyne\\Mnemosyne.csproj
+		SccProjectName0 = Mnemosyne
+		SccLocalPath0 = Mnemosyne
+		SccProjectUniqueName1 = WebMnemosyne\\WebMnemosyne.csproj
+		SccProjectName1 = WebMnemosyne
+		SccLocalPath1 = WebMnemosyne
+		SccLocalPath2 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C702CA1-48EA-4840-9D55-D3F846702232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C702CA1-48EA-4840-9D55-D3F846702232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C702CA1-48EA-4840-9D55-D3F846702232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C702CA1-48EA-4840-9D55-D3F846702232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC9C291-197E-46FE-9B76-8E3981C11CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC9C291-197E-46FE-9B76-8E3981C11CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC9C291-197E-46FE-9B76-8E3981C11CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC9C291-197E-46FE-9B76-8E3981C11CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
