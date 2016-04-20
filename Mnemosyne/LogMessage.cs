@@ -97,7 +97,7 @@ namespace Mnemosyne
         {
             try
             {
-                return DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                return DateTime.UtcNow.ToString("yyyyMMddHHmmssfff");
             }
             catch { }
             return string.Empty;
