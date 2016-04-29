@@ -1,0 +1,8 @@
+output
+artifacts
+bin
+obj
+.vs
+packages
+*.suo
+*.user
